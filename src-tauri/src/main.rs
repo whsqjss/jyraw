@@ -23,10 +23,10 @@ pub struct AIFlowChartResponse {
 #[tauri::command]
 async fn generate_flow_chart(flow_content: &str)  -> Result<AIFlowChartResponse, ()> {
   println!("{:?}", flow_content);
-  let params = AIFlowChartParams {model: "qwen-max".to_string(), input: AIFlowChartInput{prompt: format!("使用mermaid.js语法生成一张流程图，不能出现中文符号，流程内容为{}", flow_content)}};
+  let params = AIFlowChartParams {model: "qwen-max".to_string(), input: AIFlowChartInput{prompt: format!("使用mermaid.js语法生成一张流程图，流程内容为{}", flow_content)}};
   let resp = reqwest::Client::new().post("https://dashscope.aliyuncs.com/api/v1/services/aigc/text-generation/generation")
     .header("Content-Type", "application/json")
-    .header("Authorization", "sk-6930f34d8cb449da8b6007297dfea203")
+    .header("Authorization", "sk-123456")
     .json(&params)
     .send()
     .await;
