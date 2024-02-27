@@ -35,6 +35,39 @@ const AIGCModal = forwardRef((props: {
     })
   }
 
+  const generateMindmap = (mapContent: string) => {
+    console.log('mapContent:', mapContent)
+    return invoke('generate_mindmap', { mapContent }).then(res => {
+      const resJson = JSON.parse((res as any).data)
+      // console.log(resJson)
+      if (resJson?.output?.text) {
+        const resText = resJson?.output?.text as string
+        const mermaidJS = resText.split("```mermaid")[1].split("```")[0]
+        const convertMermaidJS = convertChineseSymbolsToEnglish(convertToHalfWidth(mermaidJS))
+        return convertMermaidJS
+      }
+      return ''
+    })
+  }
+
+  const getContentFieldLabel = () => {
+    if(aigcType === 'flowchart') {
+      return '流程图内容'
+    } else if(aigcType === 'mindmap') {
+      return '思维导图内容'
+    }
+    return ''
+  }
+
+  const getContentFieldTooltip = () => {
+    if(aigcType === 'flowchart') {
+      return '例：外贸服饰报关'
+    } else if(aigcType === 'mindmap') {
+      return '例：tensorflow学习路线'
+    }
+    return ''
+  }
+
   useImperativeHandle(ref, () => ({
     show
   }))
@@ -47,7 +80,7 @@ const AIGCModal = forwardRef((props: {
       open={open}
       onCancel={() => setOpen(false)}
       footer={null}
-      
+      maskClosable={false}
     >
       <Skeleton loading={loading}>
         <Form
@@ -58,7 +91,9 @@ const AIGCModal = forwardRef((props: {
             setLoading(true)
             let resText = '';
             if(values.type === 'flowchart') {
-              resText = await generateFlowChart(values.chartContent)
+              resText = await generateFlowChart(values.content)
+            } else if(values.type === 'mindmap') {
+              resText = await generateMindmap(values.content)
             }
             setLoading(false)
             if(props.onFinish) {
@@ -74,15 +109,15 @@ const AIGCModal = forwardRef((props: {
             <Select 
               options={[
                 { label: '流程图', value: 'flowchart' },
-                { label: '流程图1', value: 'flowchart1' }
+                { label: '思维导图', value: 'mindmap' }
               ]} 
             />
           </Form.Item>
           <Form.Item 
-            hidden={aigcType !== 'flowchart'}
-            name="chartContent"
-            label="流程图内容"
-            tooltip="例：外贸服饰报关"
+            hidden={!aigcType}
+            name="content"
+            label={getContentFieldLabel()}
+            tooltip={getContentFieldTooltip()}
             rules={[{ required: true }]}
           >
             <Input />

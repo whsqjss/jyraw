@@ -7,7 +7,9 @@ function convertChineseSymbolsToEnglish(str: string) {
         '》': '>',
         '，': ',',
         '：': ':',
-        '、': ','
+        '、': ',',
+        // '(': ' ',
+        // ')': ' ',
         // ...其他需要转换的中文符号及其对应的英文字符
     };
     
