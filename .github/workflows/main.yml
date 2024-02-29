@@ -1,10 +1,10 @@
 name: 'publish'
 
-# This will trigger the action on each push to the `release` branch.
+# This will trigger the action on each tag created.
 on:
   push:
-    branches:
-      - release
+    tags:
+      - 'v*'
 
 jobs:
   publish-tauri:
