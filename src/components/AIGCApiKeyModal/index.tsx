@@ -1,7 +1,6 @@
 import { invoke } from "@tauri-apps/api";
 import { Button, Form, Input, Modal, message } from "antd";
 import { forwardRef, useImperativeHandle, useState } from "react";
-import { Store } from "tauri-plugin-store-api";
 
 export type AppSettings = {
   launch_at_login: boolean;

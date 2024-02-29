@@ -8,7 +8,6 @@ const AIGCModal = forwardRef((props: {
 }, ref) => {
   const [open, setOpen] = useState(false)
   const [loading, setLoading] = useState(false)
-  const [formData, setFormData] = useState<any>({})
   const [form] = Form.useForm();
   const aigcType = Form.useWatch('type', form);
   const show = () => {
@@ -86,7 +85,6 @@ const AIGCModal = forwardRef((props: {
       <Skeleton loading={loading}>
         <Form
           form={form}
-          initialValues={formData}
           onFinish={async (values) => {
             console.log(values)
             setLoading(true)

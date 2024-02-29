@@ -5,7 +5,6 @@ import { ExcalidrawImperativeAPI } from "@excalidraw/excalidraw/types/types";
 import './index.css';
 import { Button } from "antd";
 import AIGCModal from "./components/AIGCModal";
-import { Store } from "tauri-plugin-store-api";
 import AIGCApiKeyModal from "./components/AIGCApiKeyModal";
 
 function App() {
@@ -13,8 +12,6 @@ function App() {
   const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI | null>(null);
   const aigcRef = useRef<any>()
   const aigcSettingsRef = useRef<any>()
-
-  const store = new Store(".settings.dat");
 
   return (
     <>

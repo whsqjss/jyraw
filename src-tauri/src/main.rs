@@ -135,7 +135,7 @@ fn set_app_settings(settings: AppSettings, app: tauri::AppHandle) -> Result<(), 
   let _ = with_store(app.app_handle(), stores, path, |store| {
     println!("{:?}", store.get("settings".to_string()));
     let _ = store.insert("settings".to_string(), json!(settings));
-    store.save();
+    let _ = store.save();
 
     Ok(())
   });
