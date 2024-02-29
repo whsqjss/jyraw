@@ -7,7 +7,7 @@
     "distDir": "../build"
   },
   "package": {
-    "productName": "JYExcalidraw",
+    "productName": "JYRaw",
     "version": "0.1.0"
   },
   "tauri": {
@@ -59,10 +59,10 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 900,
         "resizable": true,
-        "title": "JY白板",
-        "width": 800
+        "title": "JYRaw",
+        "width": 1600
       }
     ]
   }

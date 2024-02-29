@@ -47,9 +47,6 @@ function App() {
             <MainMenu.Item onSelect={() =>{aigcSettingsRef.current?.show()}}>
               通义千问-apiKey
             </MainMenu.Item>
-            <MainMenu.Item onSelect={() => window.alert("Item2")}>
-              Item 2
-            </MainMenu.Item>
             <MainMenu.DefaultItems.ChangeCanvasBackground />
           </MainMenu>
         </Excalidraw>

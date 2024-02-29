@@ -74,6 +74,7 @@ const AIGCModal = forwardRef((props: {
 
   return (
     <Modal
+      width={"40%"}
       centered
       destroyOnClose
       title="AIGC"
@@ -128,6 +129,9 @@ const AIGCModal = forwardRef((props: {
             </Button>
           </Form.Item>
         </Form>
+        <div style={{width: "100%", alignItems: "center", justifyContent: "center"}}>
+          <h4>服务生成的所有内容均由人工智能模型生成，其生成内容的准确性和完整性无法保证，不代表我们的态度或观点</h4>
+        </div>
       </Skeleton>
     </Modal>
   )
